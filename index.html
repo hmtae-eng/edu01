@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도 영유권 갈등 분석: 모던 에디션</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --border-color: #262626;
+            --card-bg: #111111;
+            --invert-bg: #ffffff;
+            --invert-text: #000000;
+        }
+
+        .light-mode {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --border-color: #e5e5e5;
+            --card-bg: #f9f9f9;
+            --invert-bg: #0a0a0a;
+            --invert-text: #ffffff;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', 'Noto Sans KR', serif;
+        }
+
+        .border-thin {
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 100%;
+            background-color: var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 20px;
+            }
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            background-color: var(--card-bg);
+            border-color: var(--text-color);
+        }
+
+        .mode-toggle {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .mode-toggle:hover {
+            background-color: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* Flash Card Styles */
+        .flash-card-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+        .flash-card:hover .flash-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flash-card-front, .flash-card-back {
+            backface-visibility: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .flash-card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Section Specific Colors */
+        .bg-contrast {
+            background-color: var(--invert-bg);
+            color: var(--invert-text);
+        }
+    </style>
+</head>
+<body class="selection:bg-gray-500 selection:text-white">
+
+    <!-- 내비게이션 -->
+    <nav class="fixed top-0 w-full z-50 bg-opacity-80 backdrop-blur-md border-b border-white/10 px-6 py-4 transition-colors duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <span class="serif font-black text-xl tracking-tighter uppercase">독도 분석 보고서</span>
+            <div class="flex items-center space-x-8">
+                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest opacity-70">
+                    <a href="#summary" class="hover:opacity-100 transition">개요</a>
+                    <a href="#timeline" class="hover:opacity-100 transition">역사</a>
+                    <a href="#strategy" class="hover:opacity-100 transition">심층분석</a>
+                    <a href="#resolution-cards" class="hover:opacity-100 transition">통찰</a>
+                    <a href="#conclusion" class="hover:opacity-100 transition">해결방안</a>
+                </div>
+                <button id="themeToggle" class="mode-toggle" aria-label="테마 변경">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 히어로 섹션 -->
+    <header class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-20 text-center border-b border-white/10">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">
+                독도 영유권 갈등의<br>역사적 배경과 현황
+            </h1>
+            <p class="text-lg md:text-xl font-light opacity-50 mb-12 max-w-2xl mx-auto leading-relaxed">
+                분쟁의 본질적 원인 규명 및 <br>평화적 해결을 위한 정밀 분석 보고서
+            </p>
+            <div class="w-px h-16 bg-current opacity-30 mx-auto"></div>
+        </div>
+    </header>
+
+    <!-- 개요 섹션 -->
+    <section id="summary" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto border-l border-current opacity-80 pl-8 md:pl-16">
+            <h2 class="serif text-sm font-bold uppercase tracking-[0.3em] mb-8 opacity-40">01. 요약 보고서</h2>
+            <p class="text-2xl md:text-4xl font-light leading-snug">
+                본 보고서는 독도를 둘러싼 <span class="font-bold underline decoration-1 underline-offset-8">한일 갈등의 기원과 전개 과정</span>을 분석합니다. 
+                국제 사회의 결정과 샌프란시스코 강화조약의 모호함이 낳은 현대적 갈등의 본질을 파악하고, 
+                평화적 해결을 위한 <span class="opacity-40 italic">객관적 접근 방식</span>을 제안합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- 역사 타임라인 섹션 -->
+    <section id="timeline" class="py-32 bg-contrast transition-colors duration-400">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="mb-24 text-center">
+                <h2 class="serif text-5xl font-black uppercase mb-4 tracking-tighter">역사적 궤적</h2>
+                <p class="uppercase tracking-widest text-xs opacity-50">분쟁의 연대기적 흐름</p>
+            </div>
+
+            <div class="relative">
+                <div class="timeline-line opacity-20"></div>
+
+                <div class="mb-24 flex flex-col md:flex-row items-center w-full">
+                    <div class="md:w-1/2 md:pr-20 text-center md:text-right">
+                        <span class="serif text-6xl font-black opacity-10 block mb-2">1946</span>
+                        <h3 class="text-2xl font-black mb-4">연합군 지령 제677호</h3>
+                        <p class="opacity-70 leading-relaxed">연합군최고사령관 지령. 독도를 일본의 통치 범위에서 명확히 제외하며 한국 영토로 규정.</p>
+                    </div>
+                    <div class="hidden md:block w-4 h-4 bg-current rounded-full z-10"></div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <div class="mb-24 flex flex-col md:flex-row-reverse items-center w-full">
+                    <div class="md:w-1/2 md:pl-20 text-center md:text-left">
+                        <span class="serif text-6xl font-black opacity-10 block mb-2">1951</span>
+                        <h3 class="text-2xl font-black mb-4">강화조약의 모호성</h3>
+                        <p class="opacity-70 leading-relaxed">샌프란시스코 강화조약 최종문에서 독도 명문화 누락. 일본 영유권 주장의 법적 구실이 됨.</p>
+                    </div>
+                    <div class="hidden md:block w-4 h-4 bg-current rounded-full z-10"></div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <div class="mb-24 flex flex-col md:flex-row items-center w-full">
+                    <div class="md:w-1/2 md:pr-20 text-center md:text-right">
+                        <span class="serif text-6xl font-black opacity-10 block mb-2">1952</span>
+                        <h3 class="text-2xl font-black mb-4">인접해양 주권선포</h3>
+                        <p class="opacity-70 leading-relaxed">주권 수호를 위한 이승만 평화선 선포 및 실효적 지배 강화. 일본 외무성의 강력 항의 시작.</p>
+                    </div>
+                    <div class="hidden md:block w-4 h-4 bg-current rounded-full z-10"></div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center w-full">
+                    <div class="md:w-1/2 md:pl-20 text-center md:text-left">
+                        <span class="serif text-6xl font-black opacity-10 block mb-2">2005</span>
+                        <h3 class="text-2xl font-black mb-4">다케시마의 날</h3>
+                        <p class="opacity-70 leading-relaxed">시마네현의 조례 제정. 영토 문제를 지자체 차원에서 국가적 갈등으로 격상시킴.</p>
+                    </div>
+                    <div class="hidden md:block w-4 h-4 bg-current rounded-full z-10"></div>
+                    <div class="md:w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 일본 전략 분석 섹션 -->
+    <section id="strategy" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div>
+                    <h2 class="serif text-4xl font-black mb-8 border-b border-current border-opacity-10 pb-6 uppercase">분석: 일본의 전략</h2>
+                    <p class="opacity-60 mb-10 leading-relaxed">
+                        일본 정부는 2008년 학습지도요령 개정을 기점으로 교육 체계 내 독도 기술을 체계화했습니다. 
+                        단순한 지리적 정보를 넘어 '한국의 불법 점거'라는 논리를 전 교육 과정에 주입하고 있습니다.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="p-6 border-thin rounded-xl hover-lift transition">
+                            <span class="text-xs font-bold uppercase tracking-widest opacity-50">역사 교과서 서술</span>
+                            <h4 class="text-xl font-bold mt-2">역사적 사실의 재정의</h4>
+                            <p class="text-sm opacity-50 mt-2">기존 한일 교류 중심 기술 삭제 및 항의 내용 대폭 삽입</p>
+                        </div>
+                        <div class="p-6 border-thin rounded-xl hover-lift transition">
+                            <span class="text-xs font-bold uppercase tracking-widest opacity-50">법적 프레임워크</span>
+                            <h4 class="text-xl font-bold mt-2">국제사법재판소 회부 시도</h4>
+                            <p class="text-sm opacity-50 mt-2">분쟁지역화를 유도하여 실효적 지배의 정당성 훼손 시도</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="w-full aspect-square border-thin relative p-12 flex flex-col justify-center items-center text-center">
+                        <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-current"></div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-current"></div>
+                        
+                        <h4 class="serif text-2xl mb-6">일본 교과서 독도 기술 추이</h4>
+                        <div class="w-full space-y-6 max-w-xs">
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>2001년</span><span>20%</span></div>
+                                <div class="w-full h-1 bg-current opacity-10"><div class="h-1 bg-current w-[20%]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>2008년</span><span>65%</span></div>
+                                <div class="w-full h-1 bg-current opacity-10"><div class="h-1 bg-current w-[65%]"></div></div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-bold uppercase mb-2"><span>2015년 이후</span><span>100%</span></div>
+                                <div class="w-full h-1 bg-current opacity-10"><div class="h-1 bg-red-500 w-full shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] uppercase tracking-widest mt-8 opacity-30 italic">모든 검정 교과서 내 영유권 주장 포함</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 플래시 카드 섹션 -->
+    <section id="resolution-cards" class="py-32 bg-contrast transition-colors duration-400 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 text-center">
+                <h2 class="serif text-3xl font-black uppercase mb-4 tracking-tighter">핵심 통찰 카드</h2>
+                <p class="uppercase tracking-widest text-xs opacity-50">카드를 뒤집어 상세 내용을 확인하세요</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 카드 1 -->
+                <div class="flash-card h-80 w-full perspective-1000">
+                    <div class="flash-card-inner relative w-full h-full text-center">
+                        <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
+                            <i class="fas fa-scale-balanced text-4xl mb-6 opacity-30"></i>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">국제법 근거</h3>
+                        </div>
+                        <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
+                            <p class="text-sm leading-relaxed">국제법상 '선점'의 요건인 국가 의사의 표시와 실효적 점유가 한국 측에 완벽히 충족됨을 입증해야 합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 카드 2 -->
+                <div class="flash-card h-80 w-full perspective-1000">
+                    <div class="flash-card-inner relative w-full h-full text-center">
+                        <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
+                            <i class="fas fa-book-open text-4xl mb-6 opacity-30"></i>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">역사 지리적 근거</h3>
+                        </div>
+                        <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
+                            <p class="text-sm leading-relaxed">팔도총도(1530) 등 한국 고지도뿐 아니라 일본측 자료인 삼국통람도설 등에서도 독도를 한국 영토로 인식함을 강조합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 카드 3 -->
+                <div class="flash-card h-80 w-full perspective-1000">
+                    <div class="flash-card-inner relative w-full h-full text-center">
+                        <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
+                            <i class="fas fa-handshake text-4xl mb-6 opacity-30"></i>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">외교적 노력</h3>
+                        </div>
+                        <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
+                            <p class="text-sm leading-relaxed">감정적 대응보다는 문화, 학술적 교류를 통해 일본 시민 사회 내에서도 올바른 역사가 공유되도록 유도해야 합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 카드 4 -->
+                <div class="flash-card h-80 w-full perspective-1000">
+                    <div class="flash-card-inner relative w-full h-full text-center">
+                        <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
+                            <i class="fas fa-earth-asia text-4xl mb-6 opacity-30"></i>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">국제 홍보</h3>
+                        </div>
+                        <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
+                            <p class="text-sm leading-relaxed">전 세계 주요 기관의 지도상 '리앙쿠르 암초' 또는 '다케시마' 표기를 '독도'로 바로잡기 위한 지속적인 홍보가 필요합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 해결방안 섹션 -->
+    <section id="conclusion" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="serif text-center text-4xl font-black mb-16 uppercase">평화적 해결 방안</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-current bg-opacity-10 border border-current border-opacity-10">
+                <div class="bg-contrast p-10 text-invert-text">
+                    <h4 class="text-xs font-bold uppercase tracking-widest opacity-50 mb-4">제언 01</h4>
+                    <h3 class="text-xl font-bold mb-4 text-current">객관적 사실의 공유</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">국제법적, 역사적 근거를 바탕으로 감정보다는 논리 중심의 국제적 공감대를 형성해야 합니다.</p>
+                </div>
+                <div class="bg-contrast p-10 text-invert-text">
+                    <h4 class="text-xs font-bold uppercase tracking-widest opacity-50 mb-4">제언 02</h4>
+                    <h3 class="text-xl font-bold mb-4 text-current">올바른 역사 교육</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">독도가 일본 제국주의 침탈의 첫 희생지였다는 역사적 본질을 정확히 교육해야 합니다.</p>
+                </div>
+                <div class="bg-contrast p-10 text-invert-text">
+                    <h4 class="text-xs font-bold uppercase tracking-widest opacity-50 mb-4">제언 03</h4>
+                    <h3 class="text-xl font-bold mb-4 text-current">평화 공존의 모색</h3>
+                    <p class="opacity-60 text-sm leading-relaxed">영토 문제를 정치적 선전에 이용하기보다는 동북아 평화를 위한 미래지향적 소통이 필요합니다.</p>
+                </div>
+                <div class="bg-current text-bg p-10 flex items-center justify-center" style="background-color: var(--text-color); color: var(--bg-color);">
+                    <span class="serif text-2xl font-black uppercase text-center">정의와 평화</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="py-20 border-t border-current border-opacity-10 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end">
+            <div class="mb-8 md:mb-0">
+                <span class="serif text-4xl font-black uppercase tracking-tighter">독도</span>
+                <p class="text-xs font-bold opacity-50 mt-2 uppercase tracking-[0.4em]">역사적 분석 보고서</p>
+            </div>
+            <div class="text-right text-[10px] uppercase tracking-widest opacity-40">
+                <p>미래의 안정을 위해 설계됨</p>
+                <p class="mt-1">© 2024 독도 분석 유닛. 모든 권리 보유.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const body = document.body;
+
+        let isDarkMode = true;
+
+        themeToggle.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            if (isDarkMode) {
+                body.classList.remove('light-mode');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                body.classList.add('light-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    const bars = entry.target.querySelectorAll('.h-full');
+                    bars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => bar.style.width = width, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        document.querySelectorAll('.flash-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.querySelector('.flash-card-inner').classList.toggle('flipped');
+            });
+        });
+    </script>
+</body>
+</html>
