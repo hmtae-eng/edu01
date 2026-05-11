@@ -66,21 +66,35 @@
             color: var(--bg-color);
         }
 
-        /* 플래시 카드 스타일 */
-        .flash-card-inner {
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            cursor: pointer;
+        /* 팝업 모달 스타일 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
         }
-        .flash-card:hover .flash-card-inner {
-            transform: rotateY(180deg);
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         }
-        .flash-card-front, .flash-card-back {
-            backface-visibility: hidden;
-            border: 1px solid var(--border-color);
+
+        .modal-overlay.active {
+            display: flex;
         }
-        .flash-card-back {
-            transform: rotateY(180deg);
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
         }
 
         /* 반전 배경 섹션 */
@@ -112,17 +126,40 @@
     </nav>
 
     <!-- 히어로 섹션 -->
-    <header class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-20 text-center border-b border-white/10">
+    <header class="min-h-[90vh] flex flex-col justify-center items-center px-6 pt-20 text-center border-b border-white/10">
         <div class="max-w-5xl mx-auto">
             <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">
                 독도 영유권 갈등의<br>역사적 배경과 현황
             </h1>
-            <p class="text-lg md:text-xl font-light opacity-50 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl font-light opacity-50 mb-10 max-w-2xl mx-auto leading-relaxed">
                 분쟁의 본질적 원인 규명 및 <br>평화적 해결을 위한 정밀 분석 보고서
             </p>
+            
+            <!-- 버튼 그룹 추가 -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
+                <button onclick="openModal('image')" class="px-8 py-3 border border-current hover:bg-current hover:text-bg transition-all duration-300 rounded-full text-sm font-bold tracking-widest uppercase">
+                    인포그래픽 보기
+                </button>
+                <button onclick="openModal('video')" class="px-8 py-3 border border-current hover:bg-current hover:text-bg transition-all duration-300 rounded-full text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+                    <i class="fas fa-play text-[10px]"></i> 동영상 보기
+                </button>
+            </div>
+
             <div class="w-px h-16 bg-current opacity-30 mx-auto"></div>
         </div>
     </header>
+
+    <!-- 미디어 팝업 모달 -->
+    <div id="mediaModal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-3xl hover:opacity-70 transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="modalBody" class="w-full h-full flex justify-center items-center">
+                <!-- 콘텐츠가 동적으로 삽입됨 -->
+            </div>
+        </div>
+    </div>
 
     <!-- 개요 섹션 -->
     <section id="summary" class="py-32 px-6">
@@ -215,7 +252,7 @@
 
     <!-- 푸터 -->
     <footer class="py-20 border-t border-current border-opacity-10 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end">
+        <div class="max-w-7xl mx-auto flex flex-col md:row justify-between items-end">
             <div class="mb-8 md:mb-0">
                 <span class="serif text-4xl font-black uppercase tracking-tighter">독도</span>
                 <p class="text-xs font-bold opacity-50 mt-2 uppercase tracking-[0.4em]">역사적 분석 보고서</p>
@@ -231,9 +268,12 @@
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
+        const modal = document.getElementById('mediaModal');
+        const modalBody = document.getElementById('modalBody');
 
         let isDarkMode = true;
 
+        // 테마 토글
         themeToggle.addEventListener('click', () => {
             isDarkMode = !isDarkMode;
             if (isDarkMode) {
@@ -247,7 +287,43 @@
             }
         });
 
-        // 섹션 등장 애니메이션
+        // 팝업 열기 함수
+        function openModal(type) {
+            modalBody.innerHTML = ''; // 이전 내용 삭제
+            
+            if (type === 'image') {
+                const img = document.createElement('img');
+                img.src = 'dokdo_info.png';
+                img.alt = '독도 인포그래픽';
+                img.className = 'max-w-full max-h-full object-contain shadow-2xl';
+                img.onerror = () => {
+                    modalBody.innerHTML = '<p class="text-white text-center">이미지 파일을 찾을 수 없습니다.<br>(dokdo_info.png)</p>';
+                };
+                modalBody.appendChild(img);
+            } else if (type === 'video') {
+                const video = document.createElement('video');
+                video.src = 'dokdo_mp4_1.mp4';
+                video.controls = true;
+                video.autoplay = true;
+                video.className = 'max-w-full max-h-full shadow-2xl';
+                video.onerror = () => {
+                    modalBody.innerHTML = '<p class="text-white text-center">동영상 파일을 찾을 수 없습니다.<br>(dokdo_mp4_1.mp4)</p>';
+                };
+                modalBody.appendChild(video);
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // 스크롤 방지
+        }
+
+        // 팝업 닫기 함수
+        function closeModal() {
+            modal.classList.remove('active');
+            modalBody.innerHTML = ''; // 리소스 해제
+            document.body.style.overflow = 'auto';
+        }
+
+        // 스크롤 애니메이션
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
