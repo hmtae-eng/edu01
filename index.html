@@ -102,12 +102,12 @@
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 50px;
-            height: 50px;
+            padding: 12px 20px;
             background-color: var(--text-color);
             color: var(--bg-color);
-            border-radius: 50%;
+            border-radius: 30px;
             display: flex;
+            gap: 8px;
             justify-content: center;
             align-items: center;
             cursor: pointer;
@@ -115,12 +115,19 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            font-size: 14px;
+            font-weight: bold;
         }
 
         #backToTop.show {
             opacity: 1;
             visibility: visible;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.5);
         }
 
         /* 반전 배경 섹션 */
@@ -282,9 +289,10 @@
         </div>
     </footer>
 
-    <!-- 위로 가기 버튼 -->
-    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="맨 위로 이동">
+    <!-- 위로 가기 버튼 (직관적인 텍스트 추가) -->
+    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <i class="fas fa-chevron-up"></i>
+        <span>위로</span>
     </div>
 
     <script>
@@ -311,9 +319,9 @@
             }
         });
 
-        // 스크롤 시 위로 가기 버튼 표시/숨김
+        // 스크롤 감지: 일정 거리 이상 내려오면 버튼 노출
         window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
+            if (window.scrollY > 200) {
                 backToTopBtn.classList.add('show');
             } else {
                 backToTopBtn.classList.remove('show');
