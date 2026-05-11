@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독도 지식 백과 - 주요 용어 정리</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .tab-active {
+            border-bottom: 3px solid #0284c7;
+            color: #0284c7;
+            font-weight: 700;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url('https://images.unsplash.com/photo-1599447332194-2795e1355449?q=80&w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header Section -->
+    <header class="hero-section h-80 flex flex-col items-center justify-center text-white px-4 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">대한민국의 아름다운 영토, 독도</h1>
+        <p class="text-lg md:text-xl font-light max-w-2xl">지리, 역사, 국제법적 관점에서 독도를 올바르게 이해하기 위한 핵심 용어 사전입니다.</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="sticky top-0 bg-white border-b z-50 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center">
+            <!-- Home Button -->
+            <a href="../index.html" class="flex items-center justify-center px-4 md:px-8 py-4 text-slate-600 hover:text-sky-600 border-r border-slate-100 transition-colors" title="홈으로 이동">
+                <i class="fa-solid fa-house text-lg"></i>
+                <span class="hidden md:inline ml-2 font-semibold">홈</span>
+            </a>
+            
+            <!-- Tabs Navigation -->
+            <div class="flex flex-1 justify-around">
+                <button onclick="switchTab('geo')" id="tab-geo" class="tab-active py-4 px-2 md:px-6 text-sm md:text-base transition-all">
+                    <i class="fa-solid fa-earth-asia mr-2"></i>지리·영역
+                </button>
+                <button onclick="switchTab('hist')" id="tab-hist" class="py-4 px-2 md:px-6 text-sm md:text-base text-slate-500 hover:text-sky-600 transition-all">
+                    <i class="fa-solid fa-scroll mr-2"></i>역사·사료
+                </button>
+                <button onclick="switchTab('curr')" id="tab-curr" class="py-4 px-2 md:px-6 text-sm md:text-base text-slate-500 hover:text-sky-600 transition-all">
+                    <i class="fa-solid fa-scale-balanced mr-2"></i>현황·갈등
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content Sections -->
+    <main class="max-w-5xl mx-auto p-6 md:py-12">
+        
+        <!-- Category 1: Geography -->
+        <section id="content-geo" class="fade-in grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-sky-700 mb-3 underline decoration-sky-200 decoration-4 underline-offset-4">영토 / 영해 / 영공</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    국가의 주권이 미치는 기본 범위입니다. <span class="font-semibold text-slate-800">영해</span>는 보통 기선에서 12해리(약 22km)까지를 의미하며, <span class="font-semibold text-slate-800">영공</span>은 영토와 영해의 상공을 뜻합니다.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-sky-700 mb-3 underline decoration-sky-200 decoration-4 underline-offset-4">접속수역</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    영해 밖 12해리까지의 수역입니다. 연안국이 관세, 출입국관리 등 특정 목적을 위해 국가통제권을 행사할 수 있는 완충 구역입니다.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-sky-700 mb-3 underline decoration-sky-200 decoration-4 underline-offset-4">배타적 경제수역 (EEZ)</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    영해 기선에서 200해리까지의 수역입니다. 연안국이 해양 자원의 탐사, 개발, 보전 권리를 가지며 타국 선박의 무해통항권은 보장됩니다.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover bg-sky-50 border-sky-100">
+                <h3 class="text-xl font-bold text-sky-800 mb-3 flex items-center">
+                    <i class="fa-solid fa-fire-flame-simple mr-2 text-orange-500"></i>가스 하이드레이트
+                </h3>
+                <p class="text-slate-700 leading-relaxed">
+                    '불타는 얼음'으로 불리는 고체 에너지원입니다. 독도 부근 해저에 약 6억 톤가량의 엄청난 양이 매장된 것으로 추정되는 미래 자원입니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Category 2: History -->
+        <section id="content-hist" class="hidden fade-in grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-amber-700 mb-3">독도의 옛 명칭</h3>
+                <p class="text-slate-600 leading-relaxed italic mb-2">"우산도, 자산도, 가지도, 석도"</p>
+                <p class="text-slate-600">특히 <span class="font-semibold text-slate-800">가지도</span>는 강치가 많이 산다는 의미였으며, <span class="font-semibold text-slate-800">석도</span>는 '돌섬'의 한자 표기입니다.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover border-amber-200 bg-amber-50">
+                <h3 class="text-xl font-bold text-amber-800 mb-3 flex items-center">
+                    <i class="fa-solid fa-file-signature mr-2 text-amber-600"></i>태정관 지령 (1877)
+                </h3>
+                <p class="text-slate-700 leading-relaxed font-semibold">
+                    "울릉도와 독도는 일본과 관계가 없다"
+                </p>
+                <p class="text-slate-600 mt-2 text-sm">일본 최고 행정기관인 태정관이 내무성에 내린 공식 지시로, 일본 스스로 독도가 한국 영토임을 인정한 결정적 증거입니다.</p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-amber-700 mb-3">수토관 제도</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    조선 정부가 3년에 한 번씩 관리를 파견하여 울릉도와 독도를 관리했던 제도(1697~1894)로, 지속적인 영토 관리 노력을 보여줍니다.
+                </p>
+            </div>
+            <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                <h3 class="text-xl font-bold text-amber-700 mb-3">리앙쿠르 암초 (Liancourt Rocks)</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    1849년 프랑스 포경선 리앙쿠르호가 독도를 발견하고 붙인 서양식 명칭입니다. 국제 사회에서 중립적인 이름으로 쓰이기도 하지만 원칙적인 이름은 아닙니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Category 3: Current Status -->
+        <section id="content-curr" class="hidden fade-in space-y-6">
+            <div class="bg-emerald-600 text-white p-8 rounded-2xl shadow-lg mb-8">
+                <h3 class="text-2xl font-bold mb-4 flex items-center">
+                    <i class="fa-solid fa-flag mr-3"></i>현재 우리는: 실효적 지배
+                </h3>
+                <p class="text-emerald-50 leading-relaxed text-lg">
+                    대한민국은 독도에 경찰이 상주하고, 등대와 주민이 거주하며, 실질적인 행정력을 행사하고 있습니다. 이는 국제법상 영토 주권을 주장하는 강력한 근거가 됩니다.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                    <h3 class="text-xl font-bold text-slate-700 mb-3 underline decoration-emerald-200 decoration-4">SCAPIN 제677호</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        1946년 연합군 최고사령관이 일본의 통치 대상에서 독도를 제외한 지령입니다. 전후 처리 과정에서 독도가 한국의 영토임을 재확인한 국제적 근거입니다.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                    <h3 class="text-xl font-bold text-slate-700 mb-3 underline decoration-emerald-200 decoration-4">평화선 (이승만 라인)</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        1952년 대한민국 정부가 인접 해역의 주권과 어족 자원 보호를 위해 선포한 경계선으로 독도 수호의 강력한 의지를 대외에 선포한 계기가 되었습니다.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover border-red-100">
+                    <h3 class="text-xl font-bold text-red-700 mb-3">다케시마의 날</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        일본 시마네현이 1905년 독도 편입 고시를 기념하여 2005년에 제정한 조례입니다. 매년 2월 22일 일본 정부와 지방 자치단체의 영유권 도발 수단으로 악용되고 있습니다.
+                    </p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 card-hover">
+                    <h3 class="text-xl font-bold text-slate-700 mb-3 underline decoration-emerald-200 decoration-4">신한일 어업협정</h3>
+                    <p class="text-slate-600 leading-relaxed">
+                        1998년 체결된 협정으로 양국의 EEZ가 겹치는 '중간수역' 안에 독도가 포함되었습니다. 이는 어업 목적의 설정이나 영유권 문제와 결부되어 갈등을 빚기도 했습니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 px-6 text-center">
+        <p class="mb-4">독도는 역사적, 지리적, 국제법적으로 명백한 대한민국의 영토입니다.</p>
+        <div class="flex justify-center gap-6 mb-6">
+            <i class="fa-solid fa-shield-halved text-2xl"></i>
+            <i class="fa-solid fa-anchor text-2xl"></i>
+            <i class="fa-solid fa-mountain-sun text-2xl"></i>
+        </div>
+        <p class="text-sm">© 2024 Dokdo Knowledge Hub - 우리 땅 독도 알리기 프로젝트</p>
+    </footer>
+
+    <script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show target content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // Reset tab styles
+            document.querySelectorAll('nav button').forEach(button => {
+                button.classList.remove('tab-active');
+                button.classList.add('text-slate-500');
+            });
+
+            // Set active tab style
+            const activeTab = document.getElementById('tab-' + tabId);
+            activeTab.classList.add('tab-active');
+            activeTab.classList.remove('text-slate-500');
+        }
+    </script>
+</body>
+</html>
