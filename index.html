@@ -81,7 +81,7 @@
             color: var(--bg-color);
         }
 
-        /* Flash Card Styles */
+        /* 플래시 카드 스타일 */
         .flash-card-inner {
             transition: transform 0.6s;
             transform-style: preserve-3d;
@@ -98,7 +98,7 @@
             transform: rotateY(180deg);
         }
 
-        /* Section Specific Colors */
+        /* 반전 배경 섹션 */
         .bg-contrast {
             background-color: var(--invert-bg);
             color: var(--invert-text);
@@ -112,11 +112,12 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span class="serif font-black text-xl tracking-tighter uppercase">독도 분석 보고서</span>
             <div class="flex items-center space-x-8">
-                <div class="hidden md:flex space-x-8 text-xs font-bold uppercase tracking-widest opacity-70">
+                <!-- '연표'와 '용어' 버튼 경로 수정 -->
+                <div class="hidden lg:flex space-x-6 text-xs font-bold uppercase tracking-widest opacity-70">
                     <a href="#summary" class="hover:opacity-100 transition">개요</a>
-                    <a href="#timeline" class="hover:opacity-100 transition">역사</a>
+                    <a href="./01/index.html" class="hover:opacity-100 transition">연표</a>
                     <a href="#strategy" class="hover:opacity-100 transition">심층분석</a>
-                    <a href="#resolution-cards" class="hover:opacity-100 transition">통찰</a>
+                    <a href="./02/index.html" class="hover:opacity-100 transition">용어</a>
                     <a href="#conclusion" class="hover:opacity-100 transition">해결방안</a>
                 </div>
                 <button id="themeToggle" class="mode-toggle" aria-label="테마 변경">
@@ -151,12 +152,12 @@
         </div>
     </section>
 
-    <!-- 역사 타임라인 섹션 -->
+    <!-- 역사 타임라인 섹션 (연표) -->
     <section id="timeline" class="py-32 bg-contrast transition-colors duration-400">
         <div class="max-w-6xl mx-auto px-6">
             <div class="mb-24 text-center">
-                <h2 class="serif text-5xl font-black uppercase mb-4 tracking-tighter">역사적 궤적</h2>
-                <p class="uppercase tracking-widest text-xs opacity-50">분쟁의 연대기적 흐름</p>
+                <h2 class="serif text-5xl font-black uppercase mb-4 tracking-tighter">역사적 연표</h2>
+                <p class="uppercase tracking-widest text-xs opacity-50">주요 사건별 연대기</p>
             </div>
 
             <div class="relative">
@@ -255,12 +256,12 @@
         </div>
     </section>
 
-    <!-- 플래시 카드 섹션 -->
+    <!-- 플래시 카드 섹션 (용어 사전 대용) -->
     <section id="resolution-cards" class="py-32 bg-contrast transition-colors duration-400 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="mb-16 text-center">
-                <h2 class="serif text-3xl font-black uppercase mb-4 tracking-tighter">핵심 통찰 카드</h2>
-                <p class="uppercase tracking-widest text-xs opacity-50">카드를 뒤집어 상세 내용을 확인하세요</p>
+                <h2 class="serif text-3xl font-black uppercase mb-4 tracking-tighter">주요 용어 및 통찰</h2>
+                <p class="uppercase tracking-widest text-xs opacity-50">카드를 뒤집어 용어의 상세 정의를 확인하세요</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- 카드 1 -->
@@ -268,10 +269,10 @@
                     <div class="flash-card-inner relative w-full h-full text-center">
                         <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
                             <i class="fas fa-scale-balanced text-4xl mb-6 opacity-30"></i>
-                            <h3 class="text-lg font-bold uppercase tracking-widest">국제법 근거</h3>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">실효적 지배</h3>
                         </div>
                         <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
-                            <p class="text-sm leading-relaxed">국제법상 '선점'의 요건인 국가 의사의 표시와 실효적 점유가 한국 측에 완벽히 충족됨을 입증해야 합니다.</p>
+                            <p class="text-sm leading-relaxed">특정 영토에 대해 평온하고 지속적으로 주권을 행사하는 상태를 의미하며, 독도는 현재 한국의 군 및 경찰이 상주하고 있습니다.</p>
                         </div>
                     </div>
                 </div>
@@ -280,10 +281,10 @@
                     <div class="flash-card-inner relative w-full h-full text-center">
                         <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
                             <i class="fas fa-book-open text-4xl mb-6 opacity-30"></i>
-                            <h3 class="text-lg font-bold uppercase tracking-widest">역사 지리적 근거</h3>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">고유영토론</h3>
                         </div>
                         <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
-                            <p class="text-sm leading-relaxed">팔도총도(1530) 등 한국 고지도뿐 아니라 일본측 자료인 삼국통람도설 등에서도 독도를 한국 영토로 인식함을 강조합니다.</p>
+                            <p class="text-sm leading-relaxed">역사적으로 한 번도 타국 영토였던 적이 없는 영토라는 주장으로, 한국은 삼국사기 이후 독도를 고유영토로 관리해 왔습니다.</p>
                         </div>
                     </div>
                 </div>
@@ -292,10 +293,10 @@
                     <div class="flash-card-inner relative w-full h-full text-center">
                         <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
                             <i class="fas fa-handshake text-4xl mb-6 opacity-30"></i>
-                            <h3 class="text-lg font-bold uppercase tracking-widest">외교적 노력</h3>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">배타적 경제수역</h3>
                         </div>
                         <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
-                            <p class="text-sm leading-relaxed">감정적 대응보다는 문화, 학술적 교류를 통해 일본 시민 사회 내에서도 올바른 역사가 공유되도록 유도해야 합니다.</p>
+                            <p class="text-sm leading-relaxed">영해 밖 200해리까지의 수역으로 어업 및 자원 개발 권리가 인정됩니다. 독도 영유권은 이 수역의 획정 기준이 됩니다.</p>
                         </div>
                     </div>
                 </div>
@@ -304,10 +305,10 @@
                     <div class="flash-card-inner relative w-full h-full text-center">
                         <div class="flash-card-front absolute w-full h-full flex flex-col items-center justify-center p-8 bg-contrast border-current border-opacity-10">
                             <i class="fas fa-earth-asia text-4xl mb-6 opacity-30"></i>
-                            <h3 class="text-lg font-bold uppercase tracking-widest">국제 홍보</h3>
+                            <h3 class="text-lg font-bold uppercase tracking-widest">리앙쿠르 암초</h3>
                         </div>
                         <div class="flash-card-back absolute w-full h-full flex flex-col items-center justify-center p-8 bg-current" style="background-color: var(--text-color); color: var(--bg-color);">
-                            <p class="text-sm leading-relaxed">전 세계 주요 기관의 지도상 '리앙쿠르 암초' 또는 '다케시마' 표기를 '독도'로 바로잡기 위한 지속적인 홍보가 필요합니다.</p>
+                            <p class="text-sm leading-relaxed">서구 사회에서 독도를 지칭할 때 쓰는 지명입니다. 중립적 표현을 표방하지만 한국의 고유 명칭인 '독도' 사용이 정당합니다.</p>
                         </div>
                     </div>
                 </div>
