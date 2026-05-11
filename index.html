@@ -111,12 +111,14 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <span class="serif font-black text-xl tracking-tighter uppercase cursor-pointer" onclick="window.scrollTo(0,0)">독도 분석 보고서</span>
             <div class="flex items-center space-x-8">
-                <div class="hidden lg:flex space-x-6 text-xs font-bold uppercase tracking-widest opacity-70">
-                    <a href="#summary" class="hover:opacity-100 transition">개요</a>
+                <div class="hidden lg:flex space-x-6 text-xs font-bold uppercase tracking-widest opacity-70 items-center">
+                    <!-- 미디어 버튼 상단 이동 -->
+                    <button onclick="openModal('image')" class="hover:text-red-500 transition px-2 py-1">인포그래픽</button>
+                    <button onclick="openModal('video')" class="hover:text-red-500 transition px-2 py-1">동영상</button>
+                    <div class="w-px h-3 bg-current opacity-20 mx-1"></div>
+                    <!-- 유지 메뉴 -->
                     <a href="./01/index.html" class="hover:opacity-100 transition">연표</a>
-                    <a href="#strategy" class="hover:opacity-100 transition">심층분석</a>
                     <a href="./02/index.html" class="hover:opacity-100 transition">용어</a>
-                    <a href="#conclusion" class="hover:opacity-100 transition">해결방안</a>
                 </div>
                 <button id="themeToggle" class="mode-toggle" aria-label="테마 변경">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -126,25 +128,15 @@
     </nav>
 
     <!-- 히어로 섹션 -->
-    <header class="min-h-[90vh] flex flex-col justify-center items-center px-6 pt-20 text-center border-b border-white/10">
+    <header class="min-h-[80vh] flex flex-col justify-center items-center px-6 pt-20 text-center border-b border-white/10">
         <div class="max-w-5xl mx-auto">
             <h1 class="text-4xl md:text-7xl font-black mb-8 leading-tight tracking-tighter">
                 독도 영유권 갈등의<br>역사적 배경과 현황
             </h1>
-            <p class="text-lg md:text-xl font-light opacity-50 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl font-light opacity-50 mb-12 max-w-2xl mx-auto leading-relaxed">
                 분쟁의 본질적 원인 규명 및 <br>평화적 해결을 위한 정밀 분석 보고서
             </p>
             
-            <!-- 버튼 그룹 추가 -->
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-12">
-                <button onclick="openModal('image')" class="px-8 py-3 border border-current hover:bg-current hover:text-bg transition-all duration-300 rounded-full text-sm font-bold tracking-widest uppercase">
-                    인포그래픽 보기
-                </button>
-                <button onclick="openModal('video')" class="px-8 py-3 border border-current hover:bg-current hover:text-bg transition-all duration-300 rounded-full text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
-                    <i class="fas fa-play text-[10px]"></i> 동영상 보기
-                </button>
-            </div>
-
             <div class="w-px h-16 bg-current opacity-30 mx-auto"></div>
         </div>
     </header>
