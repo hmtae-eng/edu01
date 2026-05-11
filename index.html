@@ -97,6 +97,32 @@
             transform: scale(1);
         }
 
+        /* 위로 가기 버튼 스타일 */
+        #backToTop {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        #backToTop.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
         /* 반전 배경 섹션 */
         .bg-contrast {
             background-color: var(--invert-bg);
@@ -243,7 +269,7 @@
     </section>
 
     <!-- 푸터 -->
-    <footer class="py-20 border-t border-current border-opacity-10 px-6">
+    <footer class="py-20 border-t border-current border-opacity-10 px-6 relative">
         <div class="max-w-7xl mx-auto flex flex-col md:row justify-between items-end">
             <div class="mb-8 md:mb-0">
                 <span class="serif text-4xl font-black uppercase tracking-tighter">독도</span>
@@ -256,12 +282,18 @@
         </div>
     </footer>
 
+    <!-- 위로 가기 버튼 -->
+    <div id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" title="맨 위로 이동">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
     <script>
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const body = document.body;
         const modal = document.getElementById('mediaModal');
         const modalBody = document.getElementById('modalBody');
+        const backToTopBtn = document.getElementById('backToTop');
 
         let isDarkMode = true;
 
@@ -276,6 +308,15 @@
                 body.classList.add('light-mode');
                 themeIcon.classList.remove('fa-moon');
                 themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // 스크롤 시 위로 가기 버튼 표시/숨김
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
             }
         });
 
